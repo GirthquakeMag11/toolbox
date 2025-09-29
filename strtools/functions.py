@@ -6,7 +6,7 @@ def alpha_index(data: str) -> Union[int, Sequence[int]]:
 
 	def toolbox.strtools.functions.alpha_index(data)
 
-	Get the 0-indexed position for one or more characters in the alphabet.
+	Get the 0-indexed position for one or more characters in the alphabet, or -1 if character not alphabetical.
 
 	Arguments:
 		data (str, positional, required): Target string.
@@ -29,6 +29,6 @@ def alpha_index(data: str) -> Union[int, Sequence[int]]:
 		if c in string.ascii_letters:
 			result = ord(c) - ord('A' if c.isupper() else 'a')
 		else:
-			result = 0
+			result = -1
 
 	return result
