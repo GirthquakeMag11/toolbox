@@ -1,1 +1,4 @@
-from . import dicttools
+from . import (
+	dicttools,
+	strtools,
+	)
