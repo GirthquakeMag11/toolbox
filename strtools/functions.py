@@ -12,7 +12,7 @@ def alpha_index(data: str) -> Union[int, Sequence[int]]:
 		data (str, positional, required): Target string.
 
 	Returns:
-		int | Sequence[int]: Index of character or sequence of indexes for sequence of characters. 
+		int | Sequence[int]: Index of character or sequence of indexes for sequence of characters.
 
 	Raises:
 		TypeError: If 'data' is not a string and fails to be coerced into string type.
