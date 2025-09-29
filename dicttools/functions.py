@@ -3,7 +3,7 @@ from typing import Any, Callable, Dict, Hashable
 def getdefault(data: Dict[Hashable | None, Any | None], key: Hashable, default_value: Any = None, default_factory: Callable = None) -> Any:
 	"""
 
-	def getdefault(data, key, *, default_value=None, default_factory=None)
+	def toolbox.dicttools.functions.getdefault(data, key, *, default_value=None, default_factory=None)
 
 	Get the value for `key` in `data`, setting it to `default_value` or `default_factory()` if missing.
 
