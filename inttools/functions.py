@@ -1,5 +1,5 @@
 
-def fibonacci_value(i: int):
+def fibonacci_value(i: int) -> int:
 	"""
 	
 	def toolbox.inttools.functions.fibonacci_value(i)
@@ -28,7 +28,7 @@ def fibonacci_value(i: int):
 	return a
 
 
-def fibonacci_index(v: int):
+def fibonacci_index(v: int) -> int:
 	"""
 	
 	def toolbox.inttools.functions.fibonacci_index(v)
@@ -59,7 +59,7 @@ def fibonacci_index(v: int):
 	return idx if a == value else -1
 
 
-def fibonacci_nearest(v: int):
+def fibonacci_nearest(v: int) -> int:
 	"""
 
 	def toolbox.inttools.functions.fibonacci_nearest(v)
