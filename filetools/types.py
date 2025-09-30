@@ -9,6 +9,9 @@ class File(FileSystemObject):
 
 	Model class representing File entities.
 
+	Parameters:
+		(Inherited from abc.FileSystemObject)
+
 	Properties:
 		(Inherited from abc.FileSystemObject)
 
@@ -27,9 +30,12 @@ class Directory(FileSystemObject):
 
 	Model class representing Directory entities.
 
+	Parameters:
+		(Inherited from abc.FileSystemObject)
+
 	Properties:
 		(Inherited from abc.FileSystemObject)
-		
+
 	"""
 	_factory_check = lambda p: bool(p.is_dir())
 
