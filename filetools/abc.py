@@ -29,7 +29,6 @@ class FileSystemObject(ABC):
 			raise TypeError(f"'lazy' parameter accepts only boolean values, provided {type(lazy).__name__}")
 		self._path = Path(path).resolve()
 		self._lazy = lazy
-		# !!! CHECKPOINT !!!
 
 	def __init_subclass__(cls):
 		super().__init_subclass__()
