@@ -1,4 +1,3 @@
-from typing import Callable, Type
 from .abc import FileSystemObject
 
 
@@ -20,8 +19,8 @@ class File(FileSystemObject):
 	def accepts_path(cls, path: str) -> bool:
 		return Path(path).is_file()
 
-	def __init__(self, path):
-		super().__init__(path)
+	def __init__(self, path, lazy=True):
+		super().__init__(path, lazy)
 
 
 class Directory(FileSystemObject):
@@ -42,6 +41,6 @@ class Directory(FileSystemObject):
 	def accepts_path(cls, path: str) -> bool:
 		return Path(path).is_dir()
 
-	def __init__(self, path):
-		super().__init__(path)
+	def __init__(self, path, lazy=True):
+		super().__init__(path, lazy)
 
