@@ -22,7 +22,6 @@ class File(FileSystemObject):
 		super().__init__(path)
 
 
-
 class Directory(FileSystemObject):
 	"""
 
