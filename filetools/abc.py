@@ -2,6 +2,7 @@ from typing import Union
 from pathlib import Path
 from __future__ import annotations
 
+
 class FileSystemObject:
 	"""
 	
