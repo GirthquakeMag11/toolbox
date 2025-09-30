@@ -4,8 +4,6 @@ import string
 def alpha_index(data: str) -> Union[int, Sequence[int]]:
 	"""
 
-	def toolbox.strtools.functions.alpha_index(data)
-
 	Get the 0-indexed position for one or more characters in the alphabet, or -1 if character not alphabetical.
 
 	Arguments:

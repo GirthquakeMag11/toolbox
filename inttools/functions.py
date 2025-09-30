@@ -1,8 +1,6 @@
 
 def fibonacci_value(i: int) -> int:
 	"""
-	
-	def toolbox.inttools.functions.fibonacci_value(i)
 
 	Get the value of the number at the provided index in the Fibonacci sequence.
 
@@ -30,8 +28,6 @@ def fibonacci_value(i: int) -> int:
 
 def fibonacci_index(v: int) -> int:
 	"""
-	
-	def toolbox.inttools.functions.fibonacci_index(v)
 
 	Get the 0-indexed position for a number in the Fibonacci sequence, or -1 if number not in Fibonacci sequence.
 
@@ -61,8 +57,6 @@ def fibonacci_index(v: int) -> int:
 
 def fibonacci_nearest(v: int) -> int:
 	"""
-
-	def toolbox.inttools.functions.fibonacci_nearest(v)
 
 	Get the nearest number in the Fibonacci sequence to the provided integer, or the integer itself if it is a valid Fibonacci number.
 

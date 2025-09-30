@@ -1,16 +1,20 @@
-from typing import Any, Callable
-from dataclasses import dataclass, field
+from typing import Any, Callable, Hashable
 
-@dataclass
-def LazyLoader:
-	name: str
-	factory: Callable
 
-	def __getattr__(self, attr_name: str) -> Any:
-		if str(attr_name) == self.name:
-			return self.load()
+class LazyLoader:
 
-	def load(self) -> Any:
-		if not hasattr(self, 'data'):
-			self.data = self.factory()
-		return self.data
+	def __init__(self):
+		self._data = {}
+
+	def load(self, key: Hashable) -> LazyLoader:
+		if self._data.setdefault(key, {}).setdefault("value", None) is None:
+			if self._data[key].setdefault("factory", None) is not None:
+				self._data[key]["value"] = self._data[key]["factory"]()
+		return self
+
+	def set_factory(self, key: Hashable, factory: Callable) -> LazyLoader:
+		if callable(factory):
+			self._data[key]["factory"] = factory
+			return self
+		else:
+			raise TypeError(f"'factory' argument must be callable, provided value failed callable check {factory}")

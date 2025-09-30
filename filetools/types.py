@@ -4,8 +4,6 @@ from .abc import FileSystemObject
 class File(FileSystemObject):
 	"""
 	
-	class toolbox.filetools.types.File(path)
-
 	Model class representing File entities.
 
 	Parameters:
@@ -41,8 +39,6 @@ class File(FileSystemObject):
 
 class Directory(FileSystemObject):
 	"""
-
-	class toolbox.filetools.types.Directory(path)
 
 	Model class representing Directory entities.
 

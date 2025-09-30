@@ -8,8 +8,6 @@ if TYPE_CHECKING:
 
 class FileSystemObject(ABC):
 	"""
-	
-	class toolbox.filetools.abc.FileSystemObject(path, *, lazy=True)
 
 	Abstract base class for Directory and File types.
 
@@ -44,8 +42,6 @@ class FileSystemObject(ABC):
 	@abstractmethod
 	def accepts_path(cls, path: str) -> bool:
 		"""
-		
-		classmethod toolbox.filetools.abc.FileSystemObject.accepts_path(path)
 
 		Return True if this class accepts the given path value.
 
@@ -62,8 +58,6 @@ class FileSystemObject(ABC):
 	@staticmethod
 	def factory(path: str) -> Union[File, Directory]:
 		"""
-
-		staticmethod toolbox.filetools.abc.FileSystemObject.factory(path)
 
 		Manufactures instance of appropriate FileSystemObject subclass based on `path` provided.
 
