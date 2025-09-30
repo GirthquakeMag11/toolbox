@@ -11,7 +11,7 @@ class TypeSignature:
 	ext: Tuple[str]
 	patterns: Tuple[str]
 
-	def check(self, byte_data: bytes) -> bool:
+	def check_data(self, byte_data: bytes) -> bool:
 		normalized = byte_data.hex().strip().casefold().translate(str.maketrans({char:None for char in string.whitespace}))
 		return any(fnmatch(normalized, pattern + "*") for pattern in self.patterns)
 
