@@ -34,7 +34,7 @@ class FileSystemObject(ABC):
 		super().__init_subclass__()
 		if not hasattr(cls, "accepts_path") or not callable(getattr(cls, "accepts_path", None)):
 			raise TypeError(f"{cls.__name__} must define classmethod 'accepts_path'")
-		FileSystemObject._registry.add(cls)
+		FileSystemObject._registry.append(cls)
 
 	@property
 	def path(self):
