@@ -1,10 +1,21 @@
 from typing import Any, Callable, Hashable
-
+from warnings import warn, UserWarning
 
 class LazyLoader:
 
-	def __init__(self):
+	def __init__(self, auto_clear: bool = False):
 		self._data = {}
+		self.set_auto_clear(auto_clear)
+
+	def __setitem__(self, key: Hashable, item: Any):
+		self._data.setdefault(key, {})["value"] = item
+
+	def __getitem__(self, key: Hashable) -> Any:
+		self.load_value(key)
+		return self._data.get(key).get("value")
+		if self._ac:
+			self.clear_value(key)
+
 
 	def load_value(self, key: Hashable) -> LazyLoader:
 		if self._data.setdefault(key, {}).setdefault("value", None) is None:
@@ -35,3 +46,6 @@ class LazyLoader:
 		if key in self._data:
 			self._data.setdefault(key, {})["value"] = None
 		return self
+
+	def set_auto_clear(self, setting: bool):
+		self._ac = bool(setting)
