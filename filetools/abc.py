@@ -9,14 +9,14 @@ if TYPE_CHECKING:
 class FileSystemObject(ABC):
 	"""
 	
-	class toolbox.filetools.abc.FileSystemObject(path, *, lazy=False)
+	class toolbox.filetools.abc.FileSystemObject(path, *, lazy=True)
 
 	Abstract base class for Directory and File types.
 
 	Parameters:
 		path (str, positional, required): Path to target file system entity.
 		lazy (bool, keyword, optional): Defers the assignment of attributes requiring 
-			expensive operations until they are attempted to be accessed.
+			potentially expensive operations until they are attempted to be accessed.
 
 	Properties:
 		path (str): Path to target file system entity.
@@ -24,11 +24,12 @@ class FileSystemObject(ABC):
 	"""
 	_registry: Set[Type[FileSystemObject]] = []
 
-	def __init__(self, path: str, lazy: bool = False):
+	def __init__(self, path: str, lazy: bool = True):
 		if not isinstance(lazy, bool):
 			raise TypeError(f"'lazy' parameter accepts only boolean values, provided {type(lazy).__name__}")
 		self._path = Path(path).resolve()
 		self._lazy = lazy
+		# !!! CHECKPOINT !!!
 
 	def __init_subclass__(cls):
 		super().__init_subclass__()
