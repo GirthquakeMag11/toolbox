@@ -11,7 +11,8 @@ def getdefault(data: Dict[Hashable | None, Any | None], key: Hashable, default_v
 		data (Dict, positional, required): Target dictionary.
 		key (Hashable, positional, required): Key to look up.
 		default_value (Any, keyword, optional): Value to insert if key is absent.
-		default_factory (Callable, keyword, optional): Callable returning value if key is absent and `default_value` is not set.
+		default_factory (Callable, keyword, optional): Callable returning value if key is absent and 
+			`default_value` is not set.
 
 	Returns:
 		Any: Value for `key` in `data`, or None if not found and no default provided.

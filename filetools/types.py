@@ -16,7 +16,9 @@ class File(FileSystemObject):
 		(Inherited from abc.FileSystemObject)
 
 	"""
-	_factory_check = lambda p: bool(p.is_file())
+	@classmethod
+	def accepts_path(cls, path: str) -> bool:
+		return Path(path).is_file()
 
 	def __init__(self, path):
 		super().__init__(path)
@@ -25,7 +27,7 @@ class File(FileSystemObject):
 class Directory(FileSystemObject):
 	"""
 
-	clsas toolbox.filetools.types.Directory(path)
+	class toolbox.filetools.types.Directory(path)
 
 	Model class representing Directory entities.
 
@@ -36,7 +38,9 @@ class Directory(FileSystemObject):
 		(Inherited from abc.FileSystemObject)
 
 	"""
-	_factory_check = lambda p: bool(p.is_dir())
+	@classmethod
+	def accepts_path(cls, path: str) -> bool:
+		return Path(path).is_dir()
 
 	def __init__(self, path):
 		super().__init__(path)
