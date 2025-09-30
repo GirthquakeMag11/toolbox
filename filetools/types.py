@@ -21,7 +21,7 @@ class File(FileSystemObject):
 
 	def __init__(self, path, lazy=True):
 		super().__init__(path, lazy)
-
+		
 
 class Directory(FileSystemObject):
 	"""
