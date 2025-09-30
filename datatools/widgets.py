@@ -16,6 +16,16 @@ class LazyLoader:
 		if self._ac:
 			self.clear_value(key)
 
+	def keys(self):
+		yield from self._data.keys()
+
+	def values(self):
+		for data in self._data.values():
+			yield data.get("value", None)
+
+	def items(self):
+		for key, value in self._data.items():
+			yield (key, value.get("value", None))
 
 	def load_value(self, key: Hashable) -> LazyLoader:
 		if self._data.setdefault(key, {}).setdefault("value", None) is None:
