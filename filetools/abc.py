@@ -36,6 +36,10 @@ class FileSystemObject(ABC):
 			raise TypeError(f"{cls.__name__} must define classmethod 'accepts_path'")
 		FileSystemObject._registry.add(cls)
 
+	@property
+	def path(self):
+		return str(self._path)
+
 	@classmethod
 	@abstractmethod
 	def accepts_path(cls, path: str) -> bool:
