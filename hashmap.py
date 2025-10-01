@@ -4,7 +4,11 @@ import hashlib
 
 class HashMap(collections.abc.Mapping, collections.abc.Hashable):
 	__EMPTY = "NONE"
+
+	__slots__ = ("_data","_hash")
 	def __init__(self, initial_data: Mapping | Iterable = None, **kwargs):
+		self._data = ()
+
 		def _kw():
 			if kwargs:
 				return ((k, v) for k, v in kwargs.items())
@@ -30,39 +34,48 @@ class HashMap(collections.abc.Mapping, collections.abc.Hashable):
 			if a or b:
 				yield (a, b)
 
-
 		if isinstance(initial_data, collections.abc.Mapping):
-			data = (*_map(), *_kwargs())
+			self._data = (*_map(), *_kwargs())
 		
 		elif isinstance(initial_data, collections.abc.Iterable):
 			if any(not hasattr(item, "__len__") for item in initial_data):
-				data = (*_pair_iter(), *_kwargs())
+				self._data = (*_pair_iter(), *_kwargs())
 
 			elif all(len(item) == 2 for item in initial_data):
-				data = (*_zip_iter(), *_kwargs())
+				self._data = (*_zip_iter(), *_kwargs())
 
-				
-
-
+		setattr(self, "_hash", hash(self))
 
 
-
-	def __getitem__(self, key: Hashable) -> Hashable:
+	def __getitem__(self, key):
+		for a, b in self._data:
+			if key == a: return b
+			if key == b: return a
+		raise KeyError(key)
 
 	def __iter__(self):
+		yield from self._data
 
 	def __len__(self):
+		return sum(1 for item in self._data)
 
-	def __contains__(self):
+	def __contains__(self, key):
+		return bool(any(key in item for item in self._data))
 
-	def __eq__(self):
+	def __eq__(self, other):
+		return hash(self) == hash(other)
 
 	def __hash__(self):
-
-	def keys(self):
-
-	def values(self):
-
-	def items(self):
-
-	def get(self, key: Hashable, default=HashMap.__EMPTY):
+		try:
+			return self._hash
+		except AttributeError:
+			s = []
+			for item in self._data:
+				for value in item:
+					try:
+						s.append(hash(value))
+					except:
+						hasher = hashlib.md5()
+						hasher.update(str(repr(value)).encode())
+						s.append(int.from_bytes(hasher.digest()))
+			return int("".join([str(n) for n in s]).strip())
