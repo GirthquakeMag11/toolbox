@@ -1,1 +1,0 @@
-from .propertydict import PropertyDict

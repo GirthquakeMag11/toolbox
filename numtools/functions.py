@@ -1,20 +1,5 @@
 
 def fibonacci_value(i: int) -> int:
-	"""
-
-	Get the value of the number at the provided index in the Fibonacci sequence.
-
-	Arguments:
-		i (int, positional, required): Target index.
-
-	Returns:
-		int: Index of number in Fibonacci sequence.
-
-	Raises:
-		TypeError: If provided value is not an integer.
-		ValueError: If provided value is a negative number.
-
-	"""
 	if not isinstance(i, int):
 		raise TypeError(f"'fibonacci_value' accepts integers as values, provided {type(i).__name__}")
 	if v < 0:
@@ -27,21 +12,6 @@ def fibonacci_value(i: int) -> int:
 
 
 def fibonacci_index(v: int) -> int:
-	"""
-
-	Get the 0-indexed position for a number in the Fibonacci sequence, or -1 if number not in Fibonacci sequence.
-
-	Arguments:
-		v (int, positional, required): Target value.
-
-	Returns:
-		int: Value representing the index of provided integer.
-
-	Raises:
-		TypeError: If provided value is not an integer.
-		ValueError: If provided value is a negative number.
-
-	"""
 	if not isinstance(v, int):
 		raise TypeError(f"'fibonacci_index' accepts integers as values, provided {type(v).__name__}")
 	if v < 0:
@@ -56,20 +26,6 @@ def fibonacci_index(v: int) -> int:
 
 
 def fibonacci_nearest(v: int) -> int:
-	"""
-
-	Get the nearest number in the Fibonacci sequence to the provided integer, or the integer itself if it is a valid Fibonacci number.
-
-	Arguments:
-		v (int, positional, required): Target value.
-
-	Returns:
-		int: Value for Fibonacci number closest to provided integer.
-
-	Raises:
-		TypeError: If provided value is not an integer.
-
-	"""
 	if not isinstance(v, int):
 		raise TypeError(f"'fibonacci_nearest' accepts integers as values, provided {type(v).__name__}")
 	if v < 0:
