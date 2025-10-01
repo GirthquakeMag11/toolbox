@@ -2,20 +2,22 @@ from typing import Container, Iterator
 import collections
 import string
 
-DEFAULT_TOKEN_CHARSET = tuple("'", *string.ascii_letters)
 
-def alpha_index(char: str) -> int:
-	if not isinstance(char, str):
+def alpha_index(data: str) -> int | Tuple[int]:
+	if not isinstance(data, str):
 		try:
-			char = str(char)
+			data = str(data)
 		except:
-			raise TypeError(f"'alpha_index' accepts 'char' arguments of string type, provided {type(char).__name__}")
-	if char in string.ascii_letters:
-		return ord(char) - ord('A' if char.isupper() else 'a')
+			raise TypeError(f"'data' argument must be a string. Received type: {type(char).__name__}") from None
+	if len(data) > 1:
+		return tuple(alpha_index(char) for char in data)
+
+	if data in string.ascii_letters:
+		return ord(data) - ord('A' if data.isupper() else 'a')
 	else:
 		return -1
 
-def tokenize(data: str, remove_whitespace: bool = False, remove_punctuation: bool = False, continuity_charset: Container[str] = DEFAULT_TOKEN_CHARSET) -> Iterator[str]:
+def tokenize(data: str, remove_whitespace: bool = False, remove_punctuation: bool = False, continuity_charset: Container[str] = ("'", *string.ascii_letters)) -> Iterator[str]:
 	cur_token = ''
 	for char in str(data):
 		if char in continuity_charset:
@@ -32,3 +34,4 @@ def tokenize(data: str, remove_whitespace: bool = False, remove_punctuation: boo
 			yield char
 	if cur_token:
 		yield cur_token
+
