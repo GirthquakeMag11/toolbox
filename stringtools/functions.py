@@ -1,5 +1,4 @@
 from typing import Container, Iterator
-import collections
 import string
 
 
