@@ -12,9 +12,12 @@ class Vendor:
 	name: str
 	path: str = field(init=False)
 
-	def import_module(self, namespace: Optional[MutableMapping] = None) -> types.ModuleType:
+	def import_module(self, namespace: Optional[MutableMapping] = None, pip_install: bool = False) -> types.ModuleType:
 		if not Path(self.path).exists():
-			self.pip_install()
+			if pip_install:
+				self.pip_install()
+			else:
+				raise FileNotFoundError(self.path)
 		if not self.path in sys.path:
 			sys.path.append(self.path)
 		mod = importlib.import_module(self.name)
@@ -40,14 +43,15 @@ class Vendor:
 
 class VendorModules(Enum):
 	DILL = Vendor("dill")
+	REQUESTS = Vendor("requests")
 
-def import_vendor_module(module: str, namespace: Optional[MutableMapping] = None) -> types.ModuleType:
+def import_vendor_module(module: str, namespace: Optional[MutableMapping] = None, pip_install: bool = False) -> types.ModuleType:
 	"""
-	Import a module from vendor directory "toolbox/_vend/" and optionally inject it into 'namespace'
+	Import a module from vendor directory (default: ./_vend/) and optionally inject it into 'namespace'
 	"""
 	try:
-		return getattr(VendorModules, str(module).strip().upper()).value.import_module(namespace)
-	except AttributeError as e:
+		return getattr(VendorModules, str(module).strip().upper()).value.import_module(namespace, pip_install)
+	except (AttributeError, FileNotFoundError) as e:
 		raise ImportError(f"No vendor module found: {module!r}") from e
 
 #if __name__ == "__main__":
