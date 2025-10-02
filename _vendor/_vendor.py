@@ -53,7 +53,3 @@ def import_vendor_module(module: str, namespace: Optional[MutableMapping] = None
 		return getattr(VendorModules, str(module).strip().upper()).value.import_module(namespace, pip_install)
 	except (AttributeError, FileNotFoundError) as e:
 		raise ImportError(f"No vendor module found: {module!r}") from e
-
-#if __name__ == "__main__":
-#	import_vendor_module("dill", globals())
-#	print(dill.loads(dill.dumps("hello world")))
