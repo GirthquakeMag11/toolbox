@@ -47,7 +47,8 @@ class VendorModules(Enum):
 
 def import_vendor_module(module: str, namespace: Optional[MutableMapping] = None, pip_install: bool = False) -> types.ModuleType:
 	"""
-	Import a module from vendor directory (default: ./_vend/) and optionally inject it into 'namespace'
+	Import a module from vendor directory (default: ./_vend/)
+	Can optionally inject module into 'namespace' and attempt to 'pip_install' library if missing 
 	"""
 	try:
 		return getattr(VendorModules, str(module).strip().upper()).value.import_module(namespace, pip_install)
